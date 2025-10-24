@@ -50,7 +50,7 @@ Abre [http://localhost:3000](http://localhost:3000)
     └── api.ts            # Utilidades API
 ```
 
-## 🧰 Stack
+## 🧰 Stackk
 
 - Next.js 16
 - React 19
@@ -58,6 +58,6 @@ Abre [http://localhost:3000](http://localhost:3000)
 - Tailwind CSS 4
 - Anthropic Claude API
 
-## 📝 Licencia
+## 📝 Licenciaaajenyjeje
 
 MIT
