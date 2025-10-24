@@ -1,7 +1,5 @@
+import PitchAnalyzer from "@/components/PitchAnalyzer";
+
 export default function Home() {
-  return (
-    <div>
-      <h1>Hello World</h1>
-    </div>
-  );
+  return <PitchAnalyzer />;
 }
