@@ -36,7 +36,7 @@ export default function PitchInput({
         <button
           onClick={onAnalyze}
           disabled={!idea.trim() || loading}
-          className="flex items-center gap-2 bg-gradient-to-r from-purple-600 to-blue-600 text-white px-8 py-3 rounded-2xl font-semibold hover:shadow-lg hover:scale-105 transition-all disabled:opacity-50 disabled:cursor-not-allowed"
+          className="flex items-center gap-2 bg-linear-to-r from-purple-600 to-blue-600 text-white px-8 py-3 rounded-2xl font-semibold hover:shadow-lg hover:scale-105 transition-all disabled:opacity-50 disabled:cursor-not-allowed"
         >
           {loading ? (
             <>

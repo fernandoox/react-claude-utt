@@ -15,47 +15,32 @@ export default function PitchAnalyzer() {
     if (!idea.trim()) return;
 
     setLoading(true);
+    setResult(null);
 
-    // Simular llamada a API (aquí iría la integración real con Claude)
-    setTimeout(() => {
-      setResult({
-        original: idea,
-        improved:
-          "Tu idea mejorada aparecería aquí con un pitch estructurado, gancho inicial fuerte, propuesta de valor clara y call-to-action convincente.",
-        analysis: [
-          {
-            label: "Claridad",
-            score: 7,
-            feedback: "Tu idea es comprensible pero podría ser más específica",
-          },
-          {
-            label: "Gancho",
-            score: 5,
-            feedback: "Necesitas un opening más impactante",
-          },
-          {
-            label: "Valor",
-            score: 8,
-            feedback: "La propuesta de valor es sólida",
-          },
-        ],
-        versions: [
-          {
-            type: "30 segundos",
-            text: "Versión elevator pitch ultra corta...",
-          },
-          {
-            type: "Inversionista",
-            text: "Versión enfocada en ROI y métricas...",
-          },
-          {
-            type: "Redes Sociales",
-            text: "Versión casual y viral para TikTok/IG...",
-          },
-        ],
+    try {
+      const response = await fetch("/api/analyze", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ idea }),
       });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        console.error("Error de la API:", data);
+        alert(`Error: ${data.details || data.error || "Error desconocido"}`);
+        return;
+      }
+
+      setResult(data);
+    } catch (error) {
+      console.error("Error:", error);
+      alert("Hubo un error al analizar tu pitch. Por favor intenta de nuevo.");
+    } finally {
       setLoading(false);
-    }, 2000);
+    }
   };
 
   return (
@@ -82,7 +67,7 @@ export default function PitchAnalyzer() {
           />
 
           <div className="bg-white rounded-3xl shadow-lg p-8">
-            <PitchResults result={result} />
+            <PitchResults result={result} loading={loading} />
           </div>
         </div>
       </div>

@@ -5,12 +5,18 @@ import { AnalysisResult } from "@/types/pitch";
 import AnalysisScore from "./ui/AnalysisScore";
 import PitchVersionCard from "./ui/PitchVersionCard";
 import EmptyState from "./ui/EmptyState";
+import LoadingState from "./ui/LoadingState";
 
 interface PitchResultsProps {
   result: AnalysisResult | null;
+  loading: boolean;
 }
 
-export default function PitchResults({ result }: PitchResultsProps) {
+export default function PitchResults({ result, loading }: PitchResultsProps) {
+  if (loading) {
+    return <LoadingState />;
+  }
+
   if (!result) {
     return <EmptyState />;
   }
